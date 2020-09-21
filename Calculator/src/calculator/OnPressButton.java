@@ -11,7 +11,7 @@ package calculator;
  */
 public interface OnPressButton {
     void onPressNumber(int number);
-    void onPressCalculator(int calculator);
+    void onPressCalculator(int type);
     void onPressEqual();
     void onPressDelete();
 }

@@ -18,7 +18,7 @@ import java.awt.event.ActionListener;
 public class CalculatorView extends javax.swing.JFrame {
     private OnPressButton onPressButton;
 
-    public void setOnPressButtonListenner(OnPressButton listener) {
+    public void setOnPressButton(OnPressButton listener) {
         this.onPressButton = listener;
     }
 
@@ -125,7 +125,7 @@ public class CalculatorView extends javax.swing.JFrame {
     }
     
     private void callBackPressNumber(int i) {
-        
+//        System.out.println("Press number: " + i);
         String cal = jTextField1.getText();
         jTextField1.setText(cal + String.valueOf(i));
         if (onPressButton != null) {
@@ -135,23 +135,28 @@ public class CalculatorView extends javax.swing.JFrame {
     
     public void callBackDelete(){
         String cal = jTextField1.getText();
-        cal = cal.substring(cal.length()-2);
-        jTextField1.setText(cal);
+        if(cal.length() <= 1){
+            jTextField1.setText("");
+        } else {
+            cal = cal.substring(cal.length()-1);
+            jTextField1.setText(cal);
+        }
     }
     
     private void callBackPressCalculation(int type) {
+//        System.out.println("Calculator: " + type);
         String cal = jTextField1.getText();
         switch(type) {
             case 1:
-                cal += '+';
+                cal += "+";
                 break;
             case 2:
-                cal += '-';
+                cal += "-";
                 break;
             case 3:
-                cal += '*';
+                cal += "*";
             case 4:
-                cal += '/';
+                cal += "/";
         }
         jTextField1.setText(cal);
         if (onPressButton != null) {
@@ -159,11 +164,17 @@ public class CalculatorView extends javax.swing.JFrame {
         }
     }
     private void callBackPressEqual() {
-        String cal = jTextField1.getText();
-        System.out.println(cal);
+//        String cal = jTextField1.getText();
+//        System.out.println(cal);
+//        System.out.println("Equal");
         if (onPressButton != null) {
             onPressButton.onPressEqual();
         }
+    }
+    
+    public void showValue(int value) {
+//        System.out.println("Click =");
+        jTextField1.setText(String.valueOf(value));
     }
         
  
